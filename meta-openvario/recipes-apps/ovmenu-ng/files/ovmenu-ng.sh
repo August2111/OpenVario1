@@ -688,17 +688,26 @@ dialog --nook --nocancel --pause \
 case $? in
     0) 
       TestStep  36
-      $START_PROGRAM
+      /usr/bin/OpenVarioMenu
+      ### $START_PROGRAM
     ;;
     *) 
        TestStep  37
-       main_menu
+       /usr/bin/OpenVarioMenu
+       ### main_menu
     ;;
 esac
 TestStep  38
 
 while true
 do
-  main_menu
+  /usr/bin/OpenVarioMenu
+  case $? in
+          0) do_shell;;
+        100) do_shell;;
+        200) do_reboot;; 
+        201) do_power_off 3;;
+  esac
+  ## main_menu
 done
 
